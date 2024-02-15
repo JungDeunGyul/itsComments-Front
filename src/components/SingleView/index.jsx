@@ -32,7 +32,7 @@ function SingleView() {
           댓글로 이동
         </button>
         <img
-          className="[w-700px] h-[600px]"
+          className="[w-700px] h-[600px] border-2 border-black rounded-lg"
           src={selectComment.screenshot}
           alt="Comment Screenshot"
         ></img>
