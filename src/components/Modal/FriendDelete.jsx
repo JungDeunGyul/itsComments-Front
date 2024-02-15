@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 
 import useUserStore from "../../store/useUser";
 import useFriendsStore from "../../store/useFriends";
@@ -8,6 +9,7 @@ export function FriendDelete({ friendId }) {
   const { userData } = useUserStore();
   const { setIsDeleteModalOpen } = useDeleteModalStore();
   const { setFriendsList } = useFriendsStore();
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleCloseModal(userId, friendId) {
     try {
@@ -22,6 +24,7 @@ export function FriendDelete({ friendId }) {
 
       setFriendsList(res.data.friends);
     } catch (error) {
+      setErrorMessage("삭제에 실패하였습니다.");
       console.log(error);
     }
 
@@ -32,6 +35,7 @@ export function FriendDelete({ friendId }) {
     <div className="fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-4 rounded-md">
         <p>삭제하시겠습니까?</p>
+        <p>{errorMessage}</p>
         <button
           onClick={() => handleCloseModal(userData._id, friendId)}
           className="bg-red-500 text-white px-4 py-2 mr-2 border border-red-700 rounded-md"

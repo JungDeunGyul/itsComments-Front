@@ -1,38 +1,37 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import useUserStore from "../../store/useUser";
 import useFriendsStore from "../../store/useFriends";
 import { useAddModalStore } from "../../store/useModal";
 
 export function FriendAdd() {
+  const friendMail = useRef("");
   const { userData } = useUserStore();
   const { setIsAddModalOpen } = useAddModalStore();
   const { setFriendsList } = useFriendsStore();
-  const [friendMail, setFriendMail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleAddFriend(userId, friendMail) {
     try {
       const res = await axios.patch(
-        "http://localhost:3000/friends/addition",
+        `${import.meta.env.VITE_SERVER_URL}/friends/addition`,
         {
           userId,
           friendMail,
         },
         { withCredentials: true },
       );
+
       setFriendsList(res.data.friends);
+      setIsAddModalOpen(false);
     } catch (error) {
       if (error.response.data.message === "friend not found.") {
         setErrorMessage("해당 이메일을 가진 유저가 없습니다.");
       } else {
         setErrorMessage("친구 추가에 실패하였습니다.");
       }
-      return;
     }
-
-    setIsAddModalOpen(false);
   }
 
   return (
@@ -42,14 +41,14 @@ export function FriendAdd() {
         <input
           type="text"
           placeholder="이메일 주소 입력"
-          value={friendMail}
+          defaultValue={friendMail.current}
           className="border p-2 mb-4 w-full"
-          onChange={(e) => setFriendMail(e.target.value)}
+          onChange={(e) => (friendMail.current = e.target.value)}
         />
         <p className="text-red-400">{errorMessage}</p>
         <div className="flex justify-end">
           <button
-            onClick={() => handleAddFriend(userData._id, friendMail)}
+            onClick={() => handleAddFriend(userData._id, friendMail.current)}
             className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-700"
           >
             추가
