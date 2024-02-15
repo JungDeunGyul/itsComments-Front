@@ -1,8 +1,8 @@
 import { FriendDelete } from "../Modal/FriendDelete";
-import { useDeleteModalStore } from "../../store/useModal";
+import { useState } from "react";
 
 function FriendCard({ data }) {
-  const { isDeleteModalOpen, setIsDeleteModalOpen } = useDeleteModalStore();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const friendMail = data.email;
   const friendNickname = data.nickname;
   const friendIcon = data.icon;
@@ -29,7 +29,9 @@ function FriendCard({ data }) {
           alt="Friend Icon"
         />
       </div>
-      {isDeleteModalOpen && <FriendDelete friendId={friendId} />}
+      {isDeleteModalOpen && (
+        <FriendDelete friendId={friendId} onClose={setIsDeleteModalOpen} />
+      )}
     </div>
   );
 }

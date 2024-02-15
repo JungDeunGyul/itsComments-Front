@@ -3,11 +3,9 @@ import { useState } from "react";
 
 import useUserStore from "../../store/useUser";
 import useFriendsStore from "../../store/useFriends";
-import { useDeleteModalStore } from "../../store/useModal";
 
-export function FriendDelete({ friendId }) {
+export function FriendDelete({ friendId, onClose }) {
   const { userData } = useUserStore();
-  const { setIsDeleteModalOpen } = useDeleteModalStore();
   const { setFriendsList } = useFriendsStore();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -28,7 +26,7 @@ export function FriendDelete({ friendId }) {
       console.log(error);
     }
 
-    setIsDeleteModalOpen(false);
+    onClose(false);
   }
 
   return (
@@ -43,7 +41,7 @@ export function FriendDelete({ friendId }) {
           삭제
         </button>
         <button
-          onClick={() => setIsDeleteModalOpen(false)}
+          onClick={() => onClose(false)}
           className="bg-black text-[#38D431] px-4 py-2 border border-black rounded-md"
         >
           취소

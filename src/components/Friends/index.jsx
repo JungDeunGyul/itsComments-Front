@@ -1,16 +1,15 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import FriendCard from "../FriendCard";
 import { FriendAdd } from "../Modal/FriendAdd";
 import useUserStore from "../../store/useUser";
 import useFriendsStore from "../../store/useFriends";
-import { useAddModalStore } from "../../store/useModal";
 
 function Friends() {
   const { userData } = useUserStore();
   const { friendsList, setFriendsList } = useFriendsStore();
-  const { isAddModalOpen, setIsAddModalOpen } = useAddModalStore();
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   useEffect(() => {
     async function getFriends() {
@@ -58,7 +57,7 @@ function Friends() {
           </div>
         </div>
       </div>
-      {isAddModalOpen && <FriendAdd />}
+      {isAddModalOpen && <FriendAdd onClose={setIsAddModalOpen} />}
     </>
   );
 }

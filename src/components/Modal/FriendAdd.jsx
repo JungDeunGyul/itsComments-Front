@@ -3,12 +3,10 @@ import { useRef, useState } from "react";
 
 import useUserStore from "../../store/useUser";
 import useFriendsStore from "../../store/useFriends";
-import { useAddModalStore } from "../../store/useModal";
 
-export function FriendAdd() {
+export function FriendAdd({ onClose }) {
   const friendMail = useRef("");
   const { userData } = useUserStore();
-  const { setIsAddModalOpen } = useAddModalStore();
   const { setFriendsList } = useFriendsStore();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -24,7 +22,7 @@ export function FriendAdd() {
       );
 
       setFriendsList(res.data.friends);
-      setIsAddModalOpen(false);
+      onClose(false);
     } catch (error) {
       if (error.response.data.message === "friend not found.") {
         setErrorMessage("해당 이메일을 가진 유저가 없습니다.");
@@ -54,7 +52,7 @@ export function FriendAdd() {
             추가
           </button>
           <button
-            onClick={() => setIsAddModalOpen(false)}
+            onClick={() => onClose(false)}
             className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
           >
             취소
