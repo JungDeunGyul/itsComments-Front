@@ -32,7 +32,7 @@ function App() {
       }
       try {
         const res = await axios.post(
-          import.meta.env.VITE_SERVER_URL,
+          `${import.meta.env.VITE_SERVER_URL}/login/client`,
           { token },
           { withCredentials: true },
         );
