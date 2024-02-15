@@ -9,7 +9,7 @@ function CommentCard({ data }) {
   const formattedDate = formatDate(commentPostDate);
 
   return (
-    <div className="w-[200px] min-w-[200px] h-[220px] min-h-[220px] mt-4 ml-4 border rounded-md overflow-hidden shadow-md">
+    <div className="w-[200px] min-w-[200px] h-[220px] min-h-[220px] mt-4 ml-4 border rounded-md bg-white overflow-hidden shadow-md">
       <div className="p-2 bg-black text-center text-[#38D431] font-bold text-sm">
         {commentCreator}
       </div>

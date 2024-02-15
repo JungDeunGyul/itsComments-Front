@@ -32,7 +32,7 @@ function Dashboard() {
         Received Comments
       </button>
       <div className="flex w-full h-full justify-center mt-4">
-        <div className="flex justify-center w-11/12 h-[600px] grid grid-cols-6 overflow-auto border-8 border-black rounded-lg text-center">
+        <div className="flex justify-center w-11/12 h-[600px] grid grid-cols-6 overflow-auto border-8 border-black rounded-lg bg-green-100 text-center">
           {listedComments}
         </div>
       </div>
