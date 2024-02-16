@@ -1,18 +1,27 @@
 import { useState } from "react";
 import useUserStore from "../../store/useUser";
 import CommentCard from "../CommentCard";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const { userData } = useUserStore();
   const [isMyComment, setIsMyComment] = useState(true);
+  const navigate = useNavigate();
 
   const commentsList = isMyComment
     ? userData.createdComments
     : userData.receivedComments;
 
-  const listedComments = commentsList.map((comment) => {
-    return <CommentCard key={comment._id} data={comment} />;
-  });
+  function navigateToCommentPage(commentId) {
+    console.log(commentId);
+    navigate(`/comments/${commentId}`);
+  }
+
+  const listedComments = commentsList.map((comment) => (
+    <div key={comment._id} onClick={() => navigateToCommentPage(comment._id)}>
+      <CommentCard data={comment} />
+    </div>
+  ));
 
   return (
     <div className="w-full h-full">
