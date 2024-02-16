@@ -40,7 +40,7 @@ function FeedSingleComment() {
     const replyCommentTime = new Date();
     try {
       const replyData = {
-        userData,
+        userId: userData._id,
         text: replyTextRef.current.value,
         postDate: replyCommentTime,
         commentId,
