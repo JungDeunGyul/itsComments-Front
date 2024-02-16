@@ -7,7 +7,7 @@ import useUserStore from "../store/useUser.js";
 import Dashboard from "./Dashboard/index.jsx";
 import SingleView from "./SingleView/index.jsx";
 import Friends from "./Friends/index.jsx";
-import FeedComment from "./FeedComment/index.jsx";
+import FeedSingleComment from "./FeedSingleComment/index.jsx";
 
 function App() {
   const { setUserData } = useUserStore();
@@ -70,7 +70,11 @@ function App() {
         <Route path="/" exact element={<Dashboard />} />
         <Route path="/single" exact element={<SingleView />} />
         <Route path="/friend" exact element={<Friends />} />
-        <Route path="/comments/:commentId" exact element={<FeedComment />} />
+        <Route
+          path="/comments/:commentId"
+          exact
+          element={<FeedSingleComment />}
+        />
       </Routes>
     </>
   );

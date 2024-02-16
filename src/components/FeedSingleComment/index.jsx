@@ -5,11 +5,11 @@ import { useState, useRef } from "react";
 import axios from "axios";
 
 import useUserStore from "../../store/useUser";
-import fetchFeedComment from "/Users/wantchurros/Desktop/itsComments-Front/fetchers/fetchFeedComment";
+import fetchFeedComment from "/Users/wantchurros/Desktop/itsComments-Front/fetchers/fetchFeedSingleComment";
 import formatDate from "../../utils/formatDate";
 import ReComments from "../ReComments";
 
-function FeedComment() {
+function FeedSingleComment() {
   const { commentId } = useParams();
   const { userData } = useUserStore();
   const replyTextRef = useRef(null);
@@ -111,6 +111,16 @@ function FeedComment() {
 
   const commentDate = formatDate(new Date(data.postDate));
 
+  const listedReComments =
+    isReCommentOpen &&
+    data.reComments.map((reComment) => (
+      <ReComments
+        key={reComment._id}
+        reComment={reComment}
+        onDelete={handleDeleteReply}
+      />
+    ));
+
   return (
     <>
       {isModalOpen && (
@@ -158,16 +168,7 @@ function FeedComment() {
                   </div>
                 </div>
               </div>
-              {isReCommentOpen &&
-                data.reComments.map((reComment) => {
-                  return (
-                    <ReComments
-                      key={reComment._id}
-                      reComment={reComment}
-                      onDelete={handleDeleteReply}
-                    />
-                  );
-                })}
+              {isReCommentOpen && listedReComments}
               {isReCommentOpen && (
                 <>
                   <textarea
@@ -192,4 +193,4 @@ function FeedComment() {
   );
 }
 
-export default FeedComment;
+export default FeedSingleComment;
