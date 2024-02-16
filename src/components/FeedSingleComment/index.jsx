@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import axios from "axios";
 
 import useUserStore from "../../store/useUser";
-import fetchFeedComment from "/Users/wantchurros/Desktop/itsComments-Front/fetchers/fetchFeedSingleComment";
+import fetchFeedComment from "../../../fetchers/fetchFeedSingleComment";
 import formatDate from "../../utils/formatDate";
 import ReComments from "../ReComments";
 
