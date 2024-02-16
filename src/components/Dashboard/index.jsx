@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import useUserStore from "../../store/useUser";
 import CommentCard from "../CommentCard";
-import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const { userData } = useUserStore();
@@ -13,7 +14,6 @@ function Dashboard() {
     : userData.receivedComments;
 
   function navigateToCommentPage(commentId) {
-    console.log(commentId);
     navigate(`/comments/${commentId}`);
   }
 

@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+
 import useUserStore from "../../store/useUser";
 import CommentCard from "../CommentCard";
-import { Link } from "react-router-dom";
 
 function SingleView() {
   const { createdComments, receivedComments } = useUserStore().userData;
