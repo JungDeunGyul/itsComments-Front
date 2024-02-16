@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import axios from "axios";
 
@@ -12,6 +12,8 @@ import ReComments from "../ReComments";
 function FeedComment() {
   const { commentId } = useParams();
   const { userData } = useUserStore();
+  const replyTextRef = useRef(null);
+
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery(["comment", commentId], () =>
@@ -20,7 +22,6 @@ function FeedComment() {
 
   const [isModalOpen, setModalOpen] = useState(true);
   const [isReCommentOpen, setReComment] = useState(false);
-  const [replyText, setReplyText] = useState("");
 
   const closeModal = () => {
     setModalOpen(false);
@@ -40,7 +41,7 @@ function FeedComment() {
     try {
       const replyData = {
         userData,
-        text: replyText,
+        text: replyTextRef.current.value,
         postDate: replyCommentTime,
         commentId,
       };
@@ -59,9 +60,8 @@ function FeedComment() {
         throw new Error("Failed to post reply");
       }
 
-      setReplyText("");
+      replyTextRef.current.value = "";
     } catch (error) {
-      console.log(error);
       console.error("Error posting reply:", error.message);
     }
   };
@@ -167,10 +167,9 @@ function FeedComment() {
               {isReCommentOpen && (
                 <>
                   <textarea
+                    ref={replyTextRef}
                     className="reply-textarea"
                     placeholder="Write a reply..."
-                    value={replyText}
-                    onChange={(e) => setReplyText(e.target.value)}
                   />
                   <button
                     onClick={handleReplySubmit}
