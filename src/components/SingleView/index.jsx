@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import useUserStore from "../../store/useUser";
 import CommentCard from "../CommentCard";
+import { Link } from "react-router-dom";
 
 function SingleView() {
   const { createdComments, receivedComments } = useUserStore().userData;
@@ -28,9 +29,11 @@ function SingleView() {
             url로 이동
           </button>
         </a>
-        <button className="bg-blue-500 text-white ml-2 mt-1 mb-1 px-2 py-1 rounded hover:bg-blue-700">
-          댓글로 이동
-        </button>
+        <Link to={`/comments/${selectComment._id}`}>
+          <button className="bg-blue-500 text-white ml-2 mt-1 mb-1 px-2 py-1 rounded hover:bg-blue-700">
+            댓글로 이동
+          </button>
+        </Link>
         <img
           className="[w-700px] h-[600px] border-2 border-black rounded-lg"
           src={selectComment.screenshot}
