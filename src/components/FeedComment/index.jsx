@@ -44,9 +44,10 @@ function FeedComment() {
         text: replyTextRef.current.value,
         postDate: replyCommentTime,
         commentId,
+        action: "update",
       };
 
-      const response = await axios.post(
+      const response = await axios.patch(
         `${import.meta.env.VITE_SERVER_URL}/comments/recomments`,
         replyData,
         {
@@ -77,15 +78,18 @@ function FeedComment() {
 
       const requestData = {
         userId: userData._id,
+        commentId,
+        replyId,
+        action: "delete",
       };
 
-      const response = await axios.delete(
-        `${import.meta.env.VITE_SERVER_URL}/comments/recomments/${commentId}/${replyId}`,
+      const response = await axios.patch(
+        `${import.meta.env.VITE_SERVER_URL}/comments/recomments`,
+        requestData,
         {
           headers: {
             "Content-Type": "application/json",
           },
-          data: requestData,
         },
       );
 
