@@ -170,20 +170,21 @@ function FeedSingleComment() {
               </div>
               {isReCommentOpen && listedReComments}
               {isReCommentOpen && (
-                <>
+                <div className="border border-black relative pt-1 pb-4 rounded-md">
                   <textarea
                     ref={replyTextRef}
-                    className="reply-textarea"
+                    className="reply-textarea resize-none w-full px-3 py-2 border-b-2 border-black mb-4 h-20"
                     placeholder="Write a reply..."
+                    style={{ height: "auto" }}
                   />
                   <button
                     onClick={handleReplySubmit}
-                    className="reply-button"
+                    className="reply-button absolute bottom-0 right-0 mb-1 py-1 px-2 rounded-md bg-blue-500 text-white"
                     type="submit"
                   >
                     Submit Reply
                   </button>
-                </>
+                </div>
               )}
             </div>
           </div>
