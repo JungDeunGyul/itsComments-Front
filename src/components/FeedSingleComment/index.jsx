@@ -8,6 +8,7 @@ import useUserStore from "../../store/useUser";
 import fetchFeedComment from "../../../fetchers/fetchFeedSingleComment";
 import formatDate from "../../utils/formatDate";
 import ReComments from "../ReComments";
+import { CommentDelete } from "../Modal/CommentDelete";
 
 function FeedSingleComment() {
   const { commentId } = useParams();
@@ -20,6 +21,7 @@ function FeedSingleComment() {
     fetchFeedComment(commentId),
   );
 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(true);
   const [isReCommentOpen, setReComment] = useState(false);
 
@@ -33,25 +35,6 @@ function FeedSingleComment() {
       setReComment(false);
     } else {
       setReComment(true);
-    }
-  };
-
-  const handleDeleteComment = async () => {
-    console.log(userData._id);
-    try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_SERVER_URL}/comments/${commentId}`,
-        {
-          data: {
-            userId: userData._id,
-          },
-          withCredentials: true,
-        },
-      );
-      console.log(response.data.message);
-      navigate("/");
-    } catch (error) {
-      console.log(error.message);
     }
   };
 
@@ -175,7 +158,7 @@ function FeedSingleComment() {
                   <span className="ml-1">{data.creator.nickname}</span>
                   {data.creator.email === userData.email ? (
                     <button
-                      onClick={() => handleDeleteComment()}
+                      onClick={() => setIsDeleteModalOpen(true)}
                       className="ml-2 border border-black rounded-md bg-red-400 hover:bg-red-500 text-white"
                     >
                       삭제
@@ -221,6 +204,12 @@ function FeedSingleComment() {
               )}
             </div>
           </div>
+          {isDeleteModalOpen && (
+            <CommentDelete
+              commentId={commentId}
+              onClose={setIsDeleteModalOpen}
+            />
+          )}
         </div>
       )}
     </>
