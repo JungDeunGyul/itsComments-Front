@@ -36,6 +36,25 @@ function FeedSingleComment() {
     }
   };
 
+  const handleDeleteComment = async () => {
+    console.log(userData._id);
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_SERVER_URL}/comments/${commentId}`,
+        {
+          data: {
+            userId: userData._id,
+          },
+          withCredentials: true,
+        },
+      );
+      console.log(response.data.message);
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const handleReplySubmit = async () => {
     const replyCommentTime = new Date();
     try {
@@ -145,24 +164,38 @@ function FeedSingleComment() {
               >
                 X
               </button>
-              <p>{data.reComments.length} Comments</p>
-              <div className="border m-4 ">
-                <img
-                  className="h-8 w-8 rounded-full border"
-                  src={data.creator.icon}
-                  alt="User Icon"
-                />
-                <div className="border">
+              <p className="ml-4">{data.reComments.length} Comments</p>
+              <div className="border m-4 p-1">
+                <div className="flex items-center">
+                  <img
+                    className="h-8 w-8 rounded-full border"
+                    src={data.creator.icon}
+                    alt="User Icon"
+                  />
+                  <span className="ml-1">{data.creator.nickname}</span>
+                  {data.creator.email === userData.email ? (
+                    <button
+                      onClick={() => handleDeleteComment()}
+                      className="ml-2 border border-black rounded-md bg-red-400 hover:bg-red-500 text-white"
+                    >
+                      삭제
+                    </button>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                <div className="border p-1">
                   <p className="mt-4">{data.text}</p>
                   <p className="text-xs text-gray-500">{commentDate}</p>
                   <a
                     href={data.postUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-blue-500"
+                    className="text-xs text-blue-500 block overflow-hidden whitespace-nowrap overflow-ellipsis max-w-xs"
                   >
-                    {data.postUrl}
+                    <div className="truncate">{data.postUrl}</div>
                   </a>
+
                   <div className="border-t">
                     <button onClick={handleReComment}>reply</button>
                   </div>
