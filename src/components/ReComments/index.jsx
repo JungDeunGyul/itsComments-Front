@@ -2,9 +2,9 @@
 import formatDate from "../../utils/formatDate";
 
 function ReComments({ reComment, onDelete }) {
-  const reCommentCreatorId = reComment.creator[0]._id;
+  const reCommentCreatorId = reComment.creator._id;
   const reCommentId = reComment._id;
-  const reCommentCreatorIcon = reComment.creator[0].icon;
+  const reCommentCreatorIcon = reComment.creator.icon;
   const reCommentText = reComment.text;
   const reCommentDate = formatDate(new Date(reComment.postDate));
 
