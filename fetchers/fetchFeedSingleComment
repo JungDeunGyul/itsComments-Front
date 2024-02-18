@@ -1,9 +1,14 @@
 import axios from "axios";
 
-async function fetchFeedSingleComment(commentsId) {
+async function fetchFeedSingleComment(commentsId, userId) {
   try {
     const userComments = await axios.get(
       `${import.meta.env.VITE_SERVER_URL}/comments/${commentsId}`,
+      {
+        params: {
+          userId: userId,
+        },
+      },
     );
 
     return userComments.data.comments;

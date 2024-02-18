@@ -18,7 +18,7 @@ function FeedSingleComment() {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery(["comment", commentId], () =>
-    fetchFeedComment(commentId),
+    fetchFeedComment(commentId, userData._id),
   );
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
