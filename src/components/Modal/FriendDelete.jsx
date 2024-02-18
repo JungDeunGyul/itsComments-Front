@@ -21,12 +21,11 @@ export function FriendDelete({ friendId, onClose }) {
       );
 
       setFriendsList(res.data.friends);
+      onClose(false);
     } catch (error) {
       setErrorMessage("삭제에 실패하였습니다.");
       console.log(error);
     }
-
-    onClose(false);
   }
 
   return (
