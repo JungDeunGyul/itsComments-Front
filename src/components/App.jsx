@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./Header.jsx";
 
 import useUserStore from "../store/useUser.js";
+import useCommentsStore from "../store/useComments.js";
 import Dashboard from "./Dashboard/index.jsx";
 import SingleView from "./SingleView/index.jsx";
 import Friends from "./Friends/index.jsx";
@@ -11,6 +12,7 @@ import FeedSingleComment from "./FeedSingleComment/index.jsx";
 
 function App() {
   const { setUserData } = useUserStore();
+  const { setUserComments } = useCommentsStore();
   const [loginCheck, setLoginCheck] = useState("loading");
 
   useEffect(() => {
@@ -41,6 +43,11 @@ function App() {
         const user = res.data.user;
 
         setUserData(user);
+        setUserComments({
+          createdComments: user.createdComments,
+          receivedComments: user.receivedComments,
+        });
+
         setLoginCheck("success");
       } catch (error) {
         console.log("Login error:", error);
