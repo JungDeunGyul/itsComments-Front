@@ -1,5 +1,6 @@
-import { FriendDelete } from "../Modal/FriendDelete";
 import { useState } from "react";
+
+import { FriendDelete } from "../Modal/FriendDelete";
 
 function FriendCard({ data }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);

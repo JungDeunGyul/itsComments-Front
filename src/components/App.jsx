@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./Header.jsx";
 
 import useUserStore from "../store/useUser.js";
 import useCommentsStore from "../store/useComments.js";
+import Header from "./Header.jsx";
 import Dashboard from "./Dashboard/index.jsx";
 import SingleView from "./SingleView/index.jsx";
 import Friends from "./Friends/index.jsx";

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import FriendCard from "../FriendCard";
-import { FriendAdd } from "../Modal/FriendAdd";
 import useUserStore from "../../store/useUser";
 import useFriendsStore from "../../store/useFriends";
+import FriendCard from "../FriendCard";
+import { FriendAdd } from "../Modal/FriendAdd";
 
 function Friends() {
   const { userData } = useUserStore();

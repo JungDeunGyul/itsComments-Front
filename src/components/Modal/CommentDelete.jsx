@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import useUserStore from "../../store/useUser";
 import useCommentsStore from "../../store/useComments";
-import { useNavigate } from "react-router-dom";
 
 export function CommentDelete({ commentId, onClose }) {
   const { userData } = useUserStore();

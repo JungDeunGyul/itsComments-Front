@@ -1,14 +1,13 @@
+import axios from "axios";
+import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useState, useRef } from "react";
-
-import axios from "axios";
 
 import useUserStore from "../../store/useUser";
-import fetchFeedSingleComment from "../../../fetchers/fetchFeedSingleComment";
 import formatDate from "../../utils/formatDate";
 import ReComments from "../ReComments";
 import { CommentDelete } from "../Modal/CommentDelete";
+import fetchFeedSingleComment from "../../../fetchers/fetchFeedSingleComment";
 
 function FeedSingleComment() {
   const { commentId } = useParams();
