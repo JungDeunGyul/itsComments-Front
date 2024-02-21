@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
@@ -16,7 +16,7 @@ function FeedSingleComment() {
 
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useQuery({
+  let { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["comment", commentId],
     queryFn: () => fetchFeedSingleComment(commentId, userData._id),
   });
@@ -37,6 +37,17 @@ function FeedSingleComment() {
       setReComment(true);
     }
   };
+
+  useEffect(() => {
+    const eventSource = new EventSource(
+      `${import.meta.env.VITE_SERVER_URL}/comments/recomments/comments-recomments-stream/${commentId}`,
+    );
+
+    eventSource.addEventListener("message", (event) => {
+      const userDataUpdate = JSON.parse(event.data);
+      data = userDataUpdate;
+    });
+  }, [data]);
 
   const handleReplySubmit = async () => {
     const replyCommentTime = new Date();
@@ -62,6 +73,8 @@ function FeedSingleComment() {
       if (response.status !== 200) {
         throw new Error("Failed to post reply");
       }
+
+      refetch();
 
       replyTextRef.current.value = "";
     } catch (error) {
@@ -98,6 +111,8 @@ function FeedSingleComment() {
       if (response.status !== 200) {
         throw new Error("Failed to delete reply");
       }
+
+      refetch();
     } catch (error) {
       console.error("Error deleting reply:", error.message);
     }
