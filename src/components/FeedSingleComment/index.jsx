@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 
 import useUserStore from "../../store/useUser";
 import formatDate from "../../utils/formatDate";
@@ -16,11 +15,7 @@ function FeedSingleComment() {
 
   const navigate = useNavigate();
 
-  let { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["comment", commentId],
-    queryFn: () => fetchFeedSingleComment(commentId, userData._id),
-  });
-
+  const [feedCommentData, setfeedCommentData] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(true);
   const [isReCommentOpen, setReComment] = useState(false);
@@ -39,15 +34,35 @@ function FeedSingleComment() {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const commentData = await fetchFeedSingleComment(
+          commentId,
+          userData._id,
+        );
+        setfeedCommentData(commentData);
+      } catch (error) {
+        console.error("Error fetching comment:", error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     const eventSource = new EventSource(
       `${import.meta.env.VITE_SERVER_URL}/comments/recomments/comments-recomments-stream/${commentId}`,
     );
 
     eventSource.addEventListener("message", (event) => {
-      const userDataUpdate = JSON.parse(event.data);
-      data = userDataUpdate;
+      const commentDataUpdate = JSON.parse(event.data);
+      setfeedCommentData(commentDataUpdate);
     });
-  }, [data]);
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
 
   const handleReplySubmit = async () => {
     const replyCommentTime = new Date();
@@ -74,8 +89,6 @@ function FeedSingleComment() {
         throw new Error("Failed to post reply");
       }
 
-      refetch();
-
       replyTextRef.current.value = "";
     } catch (error) {
       console.error("Error posting reply:", error.message);
@@ -85,7 +98,8 @@ function FeedSingleComment() {
   const handleDeleteReply = async (replyUserId, replyId) => {
     try {
       if (
-        (data.creator._id !== replyUserId && replyUserId !== userData._id) ||
+        (feedCommentData.creator._id !== replyUserId &&
+          replyUserId !== userData._id) ||
         !userData
       ) {
         throw new Error("You can't delete");
@@ -111,26 +125,20 @@ function FeedSingleComment() {
       if (response.status !== 200) {
         throw new Error("Failed to delete reply");
       }
-
-      refetch();
     } catch (error) {
       console.error("Error deleting reply:", error.message);
     }
   };
 
-  if (isLoading) {
+  if (!feedCommentData) {
     return <div>Loading....</div>;
   }
 
-  if (isError) {
-    return <div>Error fetching comment</div>;
-  }
-
-  const commentDate = formatDate(new Date(data.postDate));
+  const commentDate = formatDate(new Date(feedCommentData.postDate));
 
   const listedReComments =
     isReCommentOpen &&
-    data.reComments.map((reComment) => (
+    feedCommentData.reComments.map((reComment) => (
       <ReComments
         key={reComment._id}
         reComment={reComment}
@@ -145,12 +153,12 @@ function FeedSingleComment() {
           <div className="bg-white p-8 rounded-lg relative flex items-start">
             <div className="flex-shrink-0"></div>
             <div className="ml-3">
-              <p className="font-bold">{data.nickname}</p>
-              <p className="text-gray-500">{data.email}</p>
+              <p className="font-bold">{feedCommentData.nickname}</p>
+              <p className="text-gray-500">{feedCommentData.email}</p>
             </div>
             <div className="flex-grow ml-8">
               <img
-                src={data.screenshot}
+                src={feedCommentData.screenshot}
                 className="[w-700px] h-[600px]"
                 alt="Screenshot"
               />
@@ -162,16 +170,20 @@ function FeedSingleComment() {
               >
                 X
               </button>
-              <p className="ml-4">{data.reComments.length} Comments</p>
+              <p className="ml-4">
+                {feedCommentData.reComments.length} Comments
+              </p>
               <div className="border m-4 p-1">
                 <div className="flex items-center">
                   <img
                     className="h-8 w-8 rounded-full border"
-                    src={data.creator.icon}
+                    src={feedCommentData.creator.icon}
                     alt="User Icon"
                   />
-                  <span className="ml-1">{data.creator.nickname}</span>
-                  {data.creator.email === userData.email ? (
+                  <span className="ml-1">
+                    {feedCommentData.creator.nickname}
+                  </span>
+                  {feedCommentData.creator.email === userData.email ? (
                     <button
                       onClick={() => setIsDeleteModalOpen(true)}
                       className="ml-2 border border-black rounded-md bg-red-400 hover:bg-red-500 text-white"
@@ -183,15 +195,15 @@ function FeedSingleComment() {
                   )}
                 </div>
                 <div className="border p-1">
-                  <p className="mt-4">{data.text}</p>
+                  <p className="mt-4">{feedCommentData.text}</p>
                   <p className="text-xs text-gray-500">{commentDate}</p>
                   <a
-                    href={data.postUrl}
+                    href={feedCommentData.postUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-blue-500 block overflow-hidden whitespace-nowrap overflow-ellipsis max-w-xs"
                   >
-                    <div className="truncate">{data.postUrl}</div>
+                    <div className="truncate">{feedCommentData.postUrl}</div>
                   </a>
 
                   <div className="border-t">
@@ -201,7 +213,7 @@ function FeedSingleComment() {
               </div>
               {isReCommentOpen && listedReComments}
               {isReCommentOpen && (
-                <div className="border border-black relative pt-1 pb-4 rounded-md">
+                <div className="border m-4 border-black relative pt-1 pb-4 rounded-md">
                   <textarea
                     ref={replyTextRef}
                     className="reply-textarea resize-none w-full px-3 py-2 border-b-2 border-black mb-4 h-20"

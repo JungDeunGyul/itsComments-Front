@@ -5,6 +5,7 @@ function ReComments({ reComment, onDelete }) {
   const reCommentCreatorId = reComment.creator._id;
   const reCommentId = reComment._id;
   const reCommentCreatorIcon = reComment.creator.icon;
+  const reCommentNickName = reComment.creator.nickname;
   const reCommentText = reComment.text;
   const reCommentDate = formatDate(new Date(reComment.postDate));
 
@@ -22,6 +23,7 @@ function ReComments({ reComment, onDelete }) {
           src={reCommentCreatorIcon}
           alt="reCommentUserIcon"
         />
+        <span className="ml-1">{reCommentNickName}</span>
         <p>{reCommentText}</p>
         <p>{reCommentDate}</p>
       </div>
