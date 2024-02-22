@@ -10,22 +10,27 @@ function ReComments({ reComment, onDelete }) {
   const reCommentDate = formatDate(new Date(reComment.postDate));
 
   return (
-    <div>
+    <div className="border m-4 p-1">
       <div>
-        <button
-          onClick={() => onDelete(reCommentCreatorId, reCommentId)}
-          type="submit"
-        >
-          Delete
-        </button>
-        <img
-          className="h-8 w-8 rounded-full border"
-          src={reCommentCreatorIcon}
-          alt="reCommentUserIcon"
-        />
-        <span className="ml-1">{reCommentNickName}</span>
-        <p>{reCommentText}</p>
-        <p>{reCommentDate}</p>
+        <div className="flex items-center">
+          <img
+            className="h-8 w-8 rounded-full border"
+            src={reCommentCreatorIcon}
+            alt="reCommentUserIcon"
+          />
+          <span className="ml-1">{reCommentNickName}</span>
+          <button
+            className="items-end"
+            onClick={() => onDelete(reCommentCreatorId, reCommentId)}
+            type="submit"
+          >
+            🗑️
+          </button>
+        </div>
+        <div className="border p-1">
+          <p className="mt-4">{reCommentText}</p>
+          <p className="text-xs text-gray-500">{reCommentDate}</p>
+        </div>
       </div>
     </div>
   );

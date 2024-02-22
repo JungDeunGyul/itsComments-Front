@@ -163,7 +163,7 @@ function FeedSingleComment() {
                 alt="Screenshot"
               />
             </div>
-            <div className="flex-grow">
+            <div className="h-[600px] overflow-y-auto">
               <button
                 className="absolute top-4 right-4 text-gray-500"
                 onClick={closeModal}
