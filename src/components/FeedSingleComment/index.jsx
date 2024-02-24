@@ -19,6 +19,13 @@ function FeedSingleComment() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(true);
   const [isReCommentOpen, setReComment] = useState(false);
+  const [scrollCoordinate, setScrollCoordinate] = useState(null);
+
+  useEffect(() => {
+    if (feedCommentData) {
+      setScrollCoordinate(parseInt(feedCommentData.postCoordinate.y, 10) - 200);
+    }
+  }, [feedCommentData]);
 
   const closeModal = () => {
     setModalOpen(false);
@@ -198,8 +205,7 @@ function FeedSingleComment() {
                   <p className="mt-4">{feedCommentData.text}</p>
                   <p className="text-xs text-gray-500">{commentDate}</p>
                   <a
-                    href={feedCommentData.postUrl}
-                    target="_blank"
+                    href={`${feedCommentData.postUrl}?scroll=${scrollCoordinate}`}
                     rel="noopener noreferrer"
                     className="text-xs text-blue-500 block overflow-hidden whitespace-nowrap overflow-ellipsis max-w-xs"
                   >
