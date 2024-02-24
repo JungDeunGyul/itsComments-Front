@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import useCommentsStore from "../../store/useComments";
@@ -14,6 +14,13 @@ function SingleView() {
   }, [createdComments, receivedComments]);
 
   const [selectComment, setSelectComment] = useState(commentsList[0]);
+  const [scrollCoordinate, setScrollCoordinate] = useState(
+    parseInt(selectComment.postCoordinate.y, 10) - 200,
+  );
+
+  useEffect(() => {
+    setScrollCoordinate(parseInt(selectComment.postCoordinate.y, 10) - 200);
+  }, [selectComment]);
 
   const listedComments = commentsList.map((comment) => (
     <div key={comment._id} onClick={() => setSelectComment(comment)}>
@@ -35,7 +42,7 @@ function SingleView() {
           <div className="ml-[10px]">
             <p>작성자: {selectComment.creator.nickname}</p>
             <div>댓글내용: {selectComment.text}</div>
-            <a href={selectComment.postUrl}>
+            <a href={`${selectComment.postUrl}?scroll=${scrollCoordinate}`}>
               <button className="bg-green-500 text-white mt-1 mb-1 px-2 py-1 rounded hover:bg-green-700">
                 url로 이동
               </button>
