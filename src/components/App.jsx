@@ -8,7 +8,7 @@ import Header from "./Header.jsx";
 import Dashboard from "./Dashboard/index.jsx";
 import SingleView from "./SingleView/index.jsx";
 import Friends from "./Friends/index.jsx";
-import FeedSingleComment from "./FeedSingleComment/index.jsx";
+import { SingleComment } from "./SingleComment/SingleComment.jsx";
 
 function App() {
   const { setUserData } = useUserStore();
@@ -71,19 +71,21 @@ function App() {
   }
 
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" exact element={<Dashboard />} />
-        <Route path="/single" exact element={<SingleView />} />
-        <Route path="/friend" exact element={<Friends />} />
-        <Route
-          path="/comments/:commentId"
-          exact
-          element={<FeedSingleComment />}
-        />
-      </Routes>
-    </>
+    <main className="w-screen h-screen overflow-hidden">
+      <Header className="fixed top-0 left-0" />
+      <div className="w-full h-full">
+        <Routes>
+          <Route path="/" exact element={<Dashboard />} />
+          <Route path="/single" exact element={<SingleView />} />
+          <Route path="/friend" exact element={<Friends />} />
+          <Route
+            path="/comments/:commentId"
+            exact
+            element={<SingleComment />}
+          />
+        </Routes>
+      </div>
+    </main>
   );
 }
 
