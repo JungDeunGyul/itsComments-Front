@@ -1,30 +1,55 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const [activeButton, setActiveButton] = useState("dashboard");
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
+
   return (
-    <div className="bg-black py-[15px] pr-[20px] w-full h-[80px] flex border-solid border-2">
-      <Link to="/">
-        <button className="ml-[100px] mr-2 text-[#38D431] text-2xl font-bold py-2 px-4 rounded">
+    <header className="bg-black py-2 pr-4 md:pr-8 w-full md:h-16 flex border-solid border-2">
+      <Link
+        to="/"
+        className="flex items-center"
+        onClick={() => handleButtonClick("dashboard")}
+      >
+        <span
+          className={`ml-4 md:ml-8 text-${activeButton === "dashboard" ? "blue-500" : "white"} text-lg md:text-2xl font-bold py-1 px-2 md:py-2 md:px-4 rounded cursor-pointer`}
+        >
           Dashboard
-        </button>
+        </span>
       </Link>
-      <span className="ml-[5px] mr-2 text-[#38D431] text-2xl font-bold py-2 px-4 rounded">
+      <span className="ml-1 md:ml-2 mr-1 md:mr-2 text-white text-lg md:text-2xl font-bold py-1 px-2 md:py-2 md:px-4 rounded">
         |
       </span>
-      <Link to="/single">
-        <button className=" ml-[5px] mr-2 text-[#38D431] text-2xl font-bold py-2 px-4 rounded">
+      <Link
+        to="/single"
+        className="flex items-center"
+        onClick={() => handleButtonClick("singleView")}
+      >
+        <span
+          className={`ml-1 md:ml-2 mr-1 md:mr-2 text-${activeButton === "singleView" ? "blue-500" : "white"} text-lg md:text-2xl font-bold py-1 px-2 md:py-2 md:px-4 rounded cursor-pointer`}
+        >
           SingleView
-        </button>
+        </span>
       </Link>
-      <span className="ml-[5px] mr-2 text-[#38D431] text-2xl font-bold py-2 px-4 rounded">
+      <span className="ml-1 md:ml-2 mr-1 md:mr-2 text-white text-lg md:text-2xl font-bold py-1 px-2 md:py-2 md:px-4 rounded">
         |
       </span>
-      <Link to="/friend">
-        <button className=" ml-[5px] mr-2 text-[#38D431] text-2xl font-bold py-2 px-4 rounded">
-          friends
-        </button>
+      <Link
+        to="/friend"
+        className="flex items-center"
+        onClick={() => handleButtonClick("friends")}
+      >
+        <span
+          className={`ml-1 md:ml-2 mr-1 md:mr-2 text-${activeButton === "friends" ? "blue-500" : "white"} text-lg md:text-2xl font-bold py-1 px-2 md:py-2 md:px-4 rounded cursor-pointer`}
+        >
+          Friends
+        </span>
       </Link>
-    </div>
+    </header>
   );
 }
 

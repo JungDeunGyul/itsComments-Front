@@ -29,7 +29,7 @@ function SingleView() {
   ));
 
   return (
-    <div className="flex">
+    <section className="flex flex-wrap">
       {commentsList.length === 0 ? (
         <div
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
@@ -39,7 +39,7 @@ function SingleView() {
         </div>
       ) : (
         <>
-          <div className="ml-[10px]">
+          <div className="ml-[10px] w-full sm:w-2/3 md:w-3/4 lg:w-4/5 xl:w-5/6">
             <p>작성자: {selectComment.creator.nickname}</p>
             <div>댓글내용: {selectComment.text}</div>
             <a href={`${selectComment.postUrl}?scroll=${scrollCoordinate}`}>
@@ -53,17 +53,17 @@ function SingleView() {
               </button>
             </Link>
             <img
-              className="[w-700px] h-[600px] border-2 border-black rounded-lg"
+              className="w-[97%] h-auto mb-2 border-2 border-black rounded-lg"
               src={selectComment.screenshot}
               alt="Comment Screenshot"
             ></img>
           </div>
-          <div className="w-[230px] h-[700px] fixed right-0 overflow-auto mt-[10px] mr-[10px] border-2 rounded-md border-gray-300 bg-gray-200">
+          <div className="w-full sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 h-[93%] flex flex-col fixed right-0 overflow-auto pl-5 pb-2 border rounded-md bg-gray-300">
             {listedComments}
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 }
 

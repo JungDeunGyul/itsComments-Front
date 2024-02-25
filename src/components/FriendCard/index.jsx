@@ -12,12 +12,12 @@ function FriendCard({ data }) {
   return (
     <div className="w-[160px] min-w-[160px] h-[180px] min-h-[180px] ml-4 border rounded-md bg-white text-center overflow-hidden shadow-md relative">
       <button
-        className="absolute top right-1 text-lg text-red-500 font-bold"
+        className="absolute top right-1 text-lg mr-1 mt-1 text-red-500 font-bold"
         onClick={() => setIsDeleteModalOpen(true)}
       >
         ×
       </button>
-      <div className="p-2 bg-gray-300 text-center text-[#38D431] font-bold text-sm">
+      <div className="p-2 bg-black text-center text-blue-400 font-bold text-sm">
         {friendNickname}
       </div>
       <div className="whitespace-nowrap overflow-hidden text-xs overflow-ellipsis">

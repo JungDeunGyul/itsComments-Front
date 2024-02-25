@@ -10,7 +10,7 @@ function ReComments({ reComment, onDelete }) {
   const reCommentDate = formatDate(new Date(reComment.postDate));
 
   return (
-    <div className="border m-4 p-1">
+    <div className="w-[93%] border-2 border-[#333] rounded-md m-4 p-1">
       <div>
         <div className="flex items-center">
           <img
@@ -20,7 +20,7 @@ function ReComments({ reComment, onDelete }) {
           />
           <span className="ml-1">{reCommentNickName}</span>
           <button
-            className="items-end"
+            className="ml-2 items-end"
             onClick={() => onDelete(reCommentCreatorId, reCommentId)}
             type="submit"
           >
@@ -28,7 +28,7 @@ function ReComments({ reComment, onDelete }) {
           </button>
         </div>
         <div className="border p-1">
-          <p className="mt-4">{reCommentText}</p>
+          <p className="mt-2">{reCommentText}</p>
           <p className="text-xs text-gray-500">{reCommentDate}</p>
         </div>
       </div>
