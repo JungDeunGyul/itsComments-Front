@@ -42,7 +42,7 @@ function Dashboard() {
           Received Comments
         </button>
       </nav>
-      <div className="flex w-full h-5/6 justify-center mt-4 mb-20 py-30 overflow-auto bg-gray-300 border-8 border-black rounded-lg text-center flex-wrap grid grid-cols-6 gap-4">
+      <div className="flex w-full h-5/6 justify-between px-20 overflow-auto bg-gray-300 border-8 border-black rounded-lg text-center flex-wrap grid grid-cols-6 gap-4">
         {listedComments}
       </div>
     </section>
