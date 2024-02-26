@@ -168,10 +168,10 @@ export function SingleComment() {
                 <p className="font-bold">{feedCommentData.nickname}</p>
                 <p className="text-gray-500">{feedCommentData.email}</p>
               </div>
-              <div className="flex-grow ml-2">
+              <div className="flex flex-grow ml-2">
                 <img
                   src={feedCommentData.screenshot}
-                  className="w-full h-auto max-h-[600px]"
+                  className="w-auto h-full max-h-[600px] border rounded-md"
                   alt="Screenshot"
                 />
               </div>
