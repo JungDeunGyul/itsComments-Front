@@ -39,9 +39,9 @@ function SingleView() {
         </div>
       ) : (
         <>
-          <div className="ml-[10px] w-full sm:w-2/3 md:w-3/4 lg:w-4/5 xl:w-5/6">
-            <p>작성자: {selectComment.creator.nickname}</p>
-            <div>댓글내용: {selectComment.text}</div>
+          <div className="mt-2 ml-[10px] w-full sm:w-2/3 md:w-3/4 lg:w-4/5 xl:w-5/6">
+            <p className="text-xl">작성자: {selectComment.creator.nickname}</p>
+            <div className="text-2xl">댓글내용: {selectComment.text}</div>
             <a href={`${selectComment.postUrl}?scroll=${scrollCoordinate}`}>
               <button className="bg-green-500 text-white mt-1 mb-1 px-2 py-1 rounded hover:bg-green-700">
                 url로 이동

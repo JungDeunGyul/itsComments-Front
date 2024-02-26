@@ -4,7 +4,7 @@ export function ReplySection({
   handleReplySubmit,
 }) {
   return (
-    <div className="border w-[93%] border-[#333] relative ml-4 p-1 pb-3 rounded-md">
+    <div className="border w-[93%] border-[#333] relative ml-4 mt-2 p-1 pb-3 rounded-md">
       <textarea
         ref={replyTextRef}
         className="w-full reply-textarea resize-none border-b mb-4 h-20"

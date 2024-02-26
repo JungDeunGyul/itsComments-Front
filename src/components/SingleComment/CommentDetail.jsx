@@ -13,7 +13,7 @@ export function CommentDetail({
   const commentDate = formatDate(new Date(feedCommentData.postDate));
 
   return (
-    <div className="w-[93%] border-2 border-[#333] rounded-md m-4 p-1">
+    <div className="border w-[93%] border-[#333] relative ml-4 mt-2 p-1 pb-3 rounded-md">
       <div className="flex items-center">
         <img
           className="h-8 w-8 rounded-full border"

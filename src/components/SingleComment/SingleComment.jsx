@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import useUserStore from "../../store/useUser";
-import formatDate from "../../utils/formatDate";
 import ReComments from "../ReComments";
 import { CommentDelete } from "../Modal/CommentDelete";
 import fetchFeedSingleComment from "../../../fetchers/fetchFeedSingleComment";
@@ -163,19 +162,21 @@ export function SingleComment() {
     <>
       {isModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
-          <div className="bg-white w-11/12 h-5/6 p-4 rounded-lg relative flex items-start">
-            <div className="ml-2">
-              <p className="font-bold">{feedCommentData.nickname}</p>
-              <p className="text-gray-500">{feedCommentData.email}</p>
+          <div className="bg-white w-3/4 h-3/4 p-4 rounded-lg relative flex items-start">
+            <div className="w-5/6">
+              <div className="ml-2">
+                <p className="font-bold">{feedCommentData.nickname}</p>
+                <p className="text-gray-500">{feedCommentData.email}</p>
+              </div>
+              <div className="flex-grow ml-2">
+                <img
+                  src={feedCommentData.screenshot}
+                  className="w-full h-auto max-h-[600px]"
+                  alt="Screenshot"
+                />
+              </div>
             </div>
-            <div className="flex-grow ml-8">
-              <img
-                src={feedCommentData.screenshot}
-                className="w-full h-auto max-h-[600px]"
-                alt="Screenshot"
-              />
-            </div>
-            <div className="h-5/6 overflow-y-auto p-1">
+            <div className="w-1/4 h-5/6 overflow-y-auto p-1">
               <button
                 className="absolute top-4 right-4 text-gray-500"
                 onClick={closeModal}
