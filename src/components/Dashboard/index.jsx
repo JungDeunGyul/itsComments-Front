@@ -8,10 +8,10 @@ function Dashboard() {
   const { userComments } = useCommentsStore();
   const [isMyComment, setIsMyComment] = useState(true);
   const navigate = useNavigate();
-
+  console.log(userComments);
   const commentsList = isMyComment
     ? userComments.createdComments
-    : userComments.receivedComments;
+    : userComments.feedComments;
 
   function navigateToCommentPage(commentId) {
     navigate(`/comments/${commentId}`);

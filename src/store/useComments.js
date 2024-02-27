@@ -4,6 +4,7 @@ const useCommentsStore = create((set) => ({
   userComments: {
     createdComments: [],
     receivedComments: [],
+    feedComments: [],
   },
   setUserComments: (comments) => set({ userComments: comments }),
 }));

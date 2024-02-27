@@ -5,13 +5,13 @@ import useCommentsStore from "../../store/useComments";
 import CommentCard from "../CommentCard";
 
 function SingleView() {
-  const { createdComments, receivedComments } = useCommentsStore().userComments;
+  const { createdComments, feedComments } = useCommentsStore().userComments;
 
   const commentsList = useMemo(() => {
-    return [...createdComments, ...receivedComments].sort(
+    return [...createdComments, ...feedComments].sort(
       (a, b) => new Date(b.postDate) - new Date(a.postDate),
     );
-  }, [createdComments, receivedComments]);
+  }, [createdComments, feedComments]);
 
   const [selectComment, setSelectComment] = useState(commentsList[0]);
   const [scrollCoordinate, setScrollCoordinate] = useState(null);
