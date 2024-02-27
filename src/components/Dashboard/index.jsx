@@ -8,7 +8,7 @@ function Dashboard() {
   const { userComments } = useCommentsStore();
   const [isMyComment, setIsMyComment] = useState(true);
   const navigate = useNavigate();
-  console.log(userComments);
+
   const commentsList = isMyComment
     ? userComments.createdComments
     : userComments.feedComments;
