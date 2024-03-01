@@ -24,12 +24,19 @@ export function FriendAdd({ onClose }) {
       setFriendsList(res.data.friends);
       onClose(false);
     } catch (error) {
-      if (error.response.data.message === "friend not found.") {
-        setErrorMessage("해당 이메일을 가진 유저가 없습니다.");
-      } else if (error.response.data.message === "Friend already exists.") {
-        setErrorMessage("이미 있는 친구입니다.");
-      } else {
-        setErrorMessage("친구 추가에 실패하였습니다.");
+      switch (error.response.data.message) {
+        case "friend not found.":
+          setErrorMessage("해당 이메일을 가진 유저가 없습니다.");
+          break;
+        case "Friend already exists.":
+          setErrorMessage("이미 있는 친구입니다.");
+          break;
+        case "You can't add yourself as a friend.":
+          setErrorMessage("자신을 친구로 등록할 수 없습니다.");
+          break;
+        default:
+          setErrorMessage("친구 추가에 실패하였습니다.");
+          break;
       }
     }
   }
