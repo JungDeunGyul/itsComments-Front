@@ -42,27 +42,27 @@ export function FriendAdd({ onClose }) {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
       <div className="bg-white w-[300px] p-4 rounded-md">
-        <h2 className="text-xl font-bold mb-4">친구 추가</h2>
+        <h2 className="mb-4 text-xl font-bold">친구 추가</h2>
         <input
           type="text"
           placeholder="이메일 주소 입력"
           defaultValue={friendMail.current}
-          className="border p-2 mb-4 w-full"
+          className="w-full p-2 mb-4 border"
           onChange={(e) => (friendMail.current = e.target.value)}
         />
         <p className="text-red-400">{errorMessage}</p>
         <div className="flex justify-end">
           <button
             onClick={() => handleAddFriend(userData._id, friendMail.current)}
-            className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-700"
+            className="px-4 py-2 mr-2 text-white bg-blue-500 rounded hover:bg-blue-700"
           >
             추가
           </button>
           <button
             onClick={() => onClose(false)}
-            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+            className="px-4 py-2 text-white bg-gray-500 rounded hover:bg-gray-700"
           >
             취소
           </button>

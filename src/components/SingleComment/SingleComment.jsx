@@ -161,8 +161,8 @@ export function SingleComment() {
   return (
     <>
       {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-50">
-          <div className="bg-white w-3/4 h-3/4 p-4 rounded-lg relative flex items-start">
+        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-500 bg-opacity-50">
+          <div className="relative flex items-start w-3/4 p-4 bg-white rounded-lg h-3/4">
             <div className="w-5/6">
               <div className="ml-2">
                 <p className="font-bold">{feedCommentData.nickname}</p>
@@ -176,9 +176,9 @@ export function SingleComment() {
                 />
               </div>
             </div>
-            <div className="w-1/4 h-5/6 overflow-y-auto p-1">
+            <div className="w-1/4 p-1 overflow-y-auto h-5/6">
               <button
-                className="absolute top-4 right-4 text-gray-500"
+                className="absolute text-gray-500 top-4 right-4"
                 onClick={closeModal}
               >
                 X

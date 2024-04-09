@@ -11,7 +11,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-black py-2 pr-4 md:pr-8 w-full md:h-16 flex border-solid border-2">
+    <header className="flex w-full py-2 pr-4 bg-black border-2 border-solid md:pr-8 md:h-16">
       <Link
         to="/"
         className="flex items-center"
@@ -23,7 +23,7 @@ function Header() {
           Dashboard
         </span>
       </Link>
-      <span className="ml-1 md:ml-2 mr-1 md:mr-2 text-white text-lg md:text-2xl font-bold py-1 px-2 md:py-2 md:px-4 rounded">
+      <span className="px-2 py-1 ml-1 mr-1 text-lg font-bold text-white rounded md:ml-2 md:mr-2 md:text-2xl md:py-2 md:px-4">
         |
       </span>
       <Link
@@ -37,7 +37,7 @@ function Header() {
           SingleView
         </span>
       </Link>
-      <span className="ml-1 md:ml-2 mr-1 md:mr-2 text-white text-lg md:text-2xl font-bold py-1 px-2 md:py-2 md:px-4 rounded">
+      <span className="px-2 py-1 ml-1 mr-1 text-lg font-bold text-white rounded md:ml-2 md:mr-2 md:text-2xl md:py-2 md:px-4">
         |
       </span>
       <Link

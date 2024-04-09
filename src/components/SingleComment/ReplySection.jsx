@@ -9,13 +9,13 @@ export function ReplySection({
     <div className="border w-[93%] border-[#333] relative ml-4 mt-2 p-1 pb-3 rounded-md">
       <textarea
         ref={replyTextRef}
-        className="w-full reply-textarea resize-none border-b mb-4 h-20"
+        className="w-full h-20 mb-4 border-b resize-none reply-textarea"
         placeholder="Write a reply..."
         style={{ height: "auto" }}
       />
       <button
         onClick={handleReplySubmit}
-        className="absolute bottom-0 right-0 mt-1 py-1 px-1 rounded-md bg-blue-500 hover:bg-blue-700 text-white"
+        className="absolute bottom-0 right-0 px-1 py-1 mt-1 text-white bg-blue-500 rounded-md hover:bg-blue-700"
         type="submit"
       >
         제출

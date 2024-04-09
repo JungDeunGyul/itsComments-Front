@@ -39,13 +39,13 @@ function Friends() {
 
   return (
     <>
-      <section className="flex flex-col items-start justify-center px-4 md:px-10 w-full">
-        <div className="flex justify-start items-center mt-4 mb-2 rounded-lg overflow-hidden bg-gray-200 p-4 border-4 border-black">
+      <section className="flex flex-col items-start justify-center w-full px-4 md:px-10">
+        <div className="flex items-center justify-start p-4 mt-4 mb-2 overflow-hidden bg-gray-200 border-4 border-black rounded-lg">
           <p className="flex-grow">
             {userData.nickname}님의 친구 수는 {listedFriends.length} 명입니다.
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="bg-blue-500 text-white ml-4 px-2 py-1 rounded hover:bg-blue-700"
+              className="px-2 py-1 ml-4 text-white bg-blue-500 rounded hover:bg-blue-700"
             >
               친구 추가
             </button>

@@ -65,7 +65,7 @@ function App() {
 
   if (loginCheck === "fail") {
     return (
-      <div className="font-bold m-80 text-red-500">
+      <div className="font-bold text-red-500 m-80">
         로그인에 실패하였습니다...
       </div>
     );

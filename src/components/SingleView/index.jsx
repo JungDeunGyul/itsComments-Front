@@ -32,7 +32,7 @@ function SingleView() {
     <section className="flex flex-wrap">
       {commentsList.length === 0 ? (
         <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
           style={{ textAlign: "center" }}
         >
           <div className="font-bold">표시할 댓글이 없습니다.</div>
@@ -43,12 +43,12 @@ function SingleView() {
             <p className="text-xl">작성자: {selectComment.creator.nickname}</p>
             <div className="text-2xl">댓글내용: {selectComment.text}</div>
             <a href={`${selectComment.postUrl}?scroll=${scrollCoordinate}`}>
-              <button className="bg-green-500 text-white mt-1 mb-1 px-2 py-1 rounded hover:bg-green-700">
+              <button className="px-2 py-1 mt-1 mb-1 text-white bg-green-500 rounded hover:bg-green-700">
                 url로 이동
               </button>
             </a>
             <Link to={`/comments/${selectComment._id}`}>
-              <button className="bg-blue-500 text-white ml-2 mt-1 mb-1 px-2 py-1 rounded hover:bg-blue-700">
+              <button className="px-2 py-1 mt-1 mb-1 ml-2 text-white bg-blue-500 rounded hover:bg-blue-700">
                 댓글로 이동
               </button>
             </Link>

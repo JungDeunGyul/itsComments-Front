@@ -18,7 +18,7 @@ export function CommentDetail({
     <div className="border w-[93%] border-[#333] relative ml-4 mt-2 p-1 pb-3 rounded-md">
       <div className="flex items-center">
         <img
-          className="h-8 w-8 rounded-full border"
+          className="w-8 h-8 border rounded-full"
           src={feedCommentData.creator.icon}
           alt="User Icon"
         />
@@ -26,7 +26,7 @@ export function CommentDetail({
         {feedCommentData.creator.email === userData.email ? (
           <button
             onClick={() => setIsDeleteModalOpen(true)}
-            className="ml-2 items-end"
+            className="items-end ml-2"
           >
             🗑️
           </button>
@@ -34,13 +34,13 @@ export function CommentDetail({
           <></>
         )}
       </div>
-      <div className="border p-1">
+      <div className="p-1 border">
         <p className="mt-2">{feedCommentData.text}</p>
         <p className="text-xs text-gray-500">{commentDate}</p>
         <a
           href={`${feedCommentData.postUrl}?scroll=${scrollCoordinate}`}
           rel="noopener noreferrer"
-          className="text-xs text-blue-500 block overflow-hidden whitespace-nowrap overflow-ellipsis max-w-xs"
+          className="block max-w-xs overflow-hidden text-xs text-blue-500 whitespace-nowrap overflow-ellipsis"
         >
           {truncateString(feedCommentData.postUrl, 20)}
         </a>

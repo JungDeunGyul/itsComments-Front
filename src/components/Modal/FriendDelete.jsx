@@ -29,13 +29,13 @@ export function FriendDelete({ friendId, onClose }) {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-4 rounded-md">
+    <div className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
+      <div className="p-4 bg-white rounded-md">
         <p>삭제하시겠습니까?</p>
         <p>{errorMessage}</p>
         <button
           onClick={() => handleCloseModal(userData._id, friendId)}
-          className="bg-red-500 text-white px-4 py-2 mr-2 border border-red-700 rounded-md"
+          className="px-4 py-2 mr-2 text-white bg-red-500 border border-red-700 rounded-md"
         >
           삭제
         </button>

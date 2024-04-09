@@ -15,20 +15,20 @@ function ReComments({ reComment, onDelete }) {
       <div>
         <div className="flex items-center">
           <img
-            className="h-8 w-8 rounded-full border"
+            className="w-8 h-8 border rounded-full"
             src={reCommentCreatorIcon}
             alt="reCommentUserIcon"
           />
           <span className="ml-1">{reCommentNickName}</span>
           <button
-            className="ml-2 items-end"
+            className="items-end ml-2"
             onClick={() => onDelete(reCommentCreatorId, reCommentId)}
             type="submit"
           >
             🗑️
           </button>
         </div>
-        <div className="border p-1">
+        <div className="p-1 border">
           <p className="mt-2">{reCommentText}</p>
           <p className="text-xs text-gray-500">{reCommentDate}</p>
         </div>

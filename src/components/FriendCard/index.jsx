@@ -12,18 +12,18 @@ function FriendCard({ data }) {
   return (
     <div className="w-[160px] min-w-[160px] h-[180px] min-h-[180px] ml-4 border rounded-md bg-white text-center overflow-hidden shadow-md relative">
       <button
-        className="absolute top right-1 text-lg mr-1 mt-1 text-red-500 font-bold"
+        className="absolute mt-1 mr-1 text-lg font-bold text-red-500 top right-1"
         onClick={() => setIsDeleteModalOpen(true)}
       >
         ×
       </button>
-      <div className="p-2 bg-black text-center text-blue-400 font-bold text-sm">
+      <div className="p-2 text-sm font-bold text-center text-blue-400 bg-black">
         {friendNickname}
       </div>
-      <div className="whitespace-nowrap overflow-hidden text-xs overflow-ellipsis">
+      <div className="overflow-hidden text-xs whitespace-nowrap overflow-ellipsis">
         {friendMail}
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <img
           className="w-[80px] h-[80px] mt-4 rounded-full object-cover border-t"
           src={friendIcon}

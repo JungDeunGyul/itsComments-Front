@@ -28,10 +28,10 @@ function CommentCard({ data }) {
 
   return (
     <div className="w-[200px] min-w-[50px] h-[220px] min-h-[55px] mt-4 ml-4 border rounded-md bg-white overflow-hidden shadow-md">
-      <div className="p-2 bg-black text-center text-white font-bold text-sm">
+      <div className="p-2 text-sm font-bold text-center text-white bg-black">
         {commentCreator}
       </div>
-      <div className="whitespace-nowrap overflow-hidden overflow-ellipsis">
+      <div className="overflow-hidden whitespace-nowrap overflow-ellipsis">
         {commentText}
       </div>
       <img
@@ -39,7 +39,7 @@ function CommentCard({ data }) {
         src={commentScreenshot}
         alt="Comment Screenshot"
       />
-      <div className="p-2 text-gray-500 text-xs">{formattedDate}</div>
+      <div className="p-2 text-xs text-gray-500">{formattedDate}</div>
     </div>
   );
 }
