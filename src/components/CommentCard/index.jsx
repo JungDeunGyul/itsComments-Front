@@ -11,15 +11,6 @@ function CommentCard({ data }) {
   }
 
   const { creator, text, postDate, screenshot } = data;
-
-  if (!creator || !text || !postDate || !screenshot) {
-    return (
-      <div className="bg-red-200 text-red-800 font-bold py-2 px-4 rounded">
-        Error: Incomplete data provided
-      </div>
-    );
-  }
-
   const commentCreator = creator.nickname;
   const commentText = text;
   const commentPostDate = new Date(postDate);
