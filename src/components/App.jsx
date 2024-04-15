@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 import useUserStore from "../store/useUser.js";
 import useCommentsStore from "../store/useComments.js";
-import Header from "./Header.jsx";
+import Header from "./Header";
 import Dashboard from "./Dashboard/index.jsx";
 import SingleView from "./SingleView/index.jsx";
 import Friends from "./Friends/index.jsx";
