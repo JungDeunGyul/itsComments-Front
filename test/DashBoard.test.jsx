@@ -14,7 +14,7 @@ jest.mock("../src/store/useComments", () => ({
   default: () => ({
     userComments: {
       createdComments: mockedComments,
-      feedComments: [],
+      receivedComments: [],
     },
   }),
 }));

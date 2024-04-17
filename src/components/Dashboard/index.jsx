@@ -11,7 +11,7 @@ function Dashboard() {
 
   const commentsList = isMyComment
     ? userComments.createdComments
-    : userComments.feedComments;
+    : userComments.receivedComments;
 
   function navigateToCommentPage(commentId) {
     navigate(`/comments/${commentId}`);

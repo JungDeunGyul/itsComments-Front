@@ -45,8 +45,8 @@ function App() {
         setUserData(user);
         setUserComments({
           createdComments: user.createdComments,
-          receivedComments: user.receivedComments,
           feedComments: user.feedComments,
+          receivedComments: user.receivedComments,
         });
 
         setLoginCheck("success");
