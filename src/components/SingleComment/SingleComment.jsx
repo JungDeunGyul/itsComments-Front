@@ -169,7 +169,7 @@ export function SingleComment() {
               <div className="flex flex-grow ml-2">
                 <img
                   src={feedCommentData.screenshot}
-                  className="w-auto h-full max-h-[600px] border rounded-md"
+                  className="w-auto h-full max-h-[550px] border rounded-md"
                   alt="Screenshot"
                 />
               </div>
