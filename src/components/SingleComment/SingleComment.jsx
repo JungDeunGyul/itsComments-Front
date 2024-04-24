@@ -79,10 +79,9 @@ export function SingleComment() {
         text: replyTextRef.current.value,
         postDate: replyCommentTime,
         commentId,
-        action: "update",
       };
 
-      const response = await axios.patch(
+      const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/comments/recomments`,
         replyData,
         {
@@ -116,13 +115,12 @@ export function SingleComment() {
         userId: userData._id,
         commentId,
         replyId,
-        action: "delete",
       };
 
-      const response = await axios.patch(
+      const response = await axios.delete(
         `${import.meta.env.VITE_SERVER_URL}/comments/recomments`,
-        requestData,
         {
+          data: requestData,
           headers: {
             "Content-Type": "application/json",
           },
