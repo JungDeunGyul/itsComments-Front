@@ -45,8 +45,8 @@ function App() {
         setUserData(user);
         setUserComments({
           createdComments: user.createdComments,
-          feedComments: user.feedComments,
           receivedComments: user.receivedComments,
+          feedComments: user.feedComments,
         });
 
         setLoginCheck("success");
@@ -60,13 +60,24 @@ function App() {
   }, []);
 
   if (loginCheck === "loading") {
-    return <div className="font-bold m-80">로딩중입니다...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-50">
+        <div className="text-center">
+          <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32 mb-4"></div>
+          <p className="text-xl font-bold text-gray-700">로딩중입니다...</p>
+        </div>
+      </div>
+    );
   }
 
   if (loginCheck === "fail") {
     return (
-      <div className="font-bold text-red-500 m-80">
-        로그인에 실패하였습니다...
+      <div className="flex items-center justify-center h-screen bg-red-50">
+        <div className="text-center p-8 rounded-lg shadow-lg bg-white">
+          <h1 className="text-2xl font-bold text-red-500 mb-4">
+            로그인에 실패하였습니다
+          </h1>
+        </div>
       </div>
     );
   }
