@@ -46,7 +46,7 @@ export function CommentDelete({ commentId, onClose }) {
           </button>
           <button
             onClick={() => onClose(false)}
-            className="bg-black text-[#38D431] px-4 py-2 border border-black rounded-md"
+            className="bg-black text-white px-4 py-2 border border-black rounded-md"
           >
             취소
           </button>
