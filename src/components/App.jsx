@@ -33,6 +33,7 @@ function App() {
       if (!token) {
         setLoginCheck("fail");
       }
+
       try {
         const res = await axios.post(
           `${import.meta.env.VITE_SERVER_URL}/login/client`,
@@ -43,6 +44,7 @@ function App() {
         const user = res.data.user;
 
         setUserData(user);
+
         setUserComments({
           createdComments: user.createdComments,
           receivedComments: user.receivedComments,
@@ -51,7 +53,6 @@ function App() {
 
         setLoginCheck("success");
       } catch (error) {
-        console.log("Login error:", error);
         setLoginCheck("fail");
       }
     }
