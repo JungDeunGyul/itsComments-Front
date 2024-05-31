@@ -39,6 +39,7 @@ export function CommentDetail({
         <p className="text-xs text-gray-500">{commentDate}</p>
         <a
           href={`${feedCommentData.postUrl}?scroll=${scrollCoordinate}`}
+          target="_blank"
           rel="noopener noreferrer"
           className="block max-w-xs overflow-hidden text-xs text-blue-500 whitespace-nowrap overflow-ellipsis"
         >
