@@ -1,10 +1,6 @@
 import React from "react";
 
-export function ReplySection({
-  isReCommentOpen,
-  replyTextRef,
-  handleReplySubmit,
-}) {
+export function ReplySection({ replyTextRef, handleReplySubmit }) {
   return (
     <div className="border w-[93%] border-[#333] relative ml-4 mt-2 p-1 pb-3 rounded-md">
       <textarea
