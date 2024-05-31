@@ -52,7 +52,7 @@ function Friends() {
           </p>
         </div>
         <div className="flex w-full mt-4 overflow-hidden">
-          <div className="flex justify-center w-full max-h-[600px] p-2 md:p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 md:gap-4 overflow-auto bg-gray-300 border-8 border-black rounded-lg text-center">
+          <div className="justify-center w-full max-h-[600px] p-2 md:p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 md:gap-4 overflow-auto bg-gray-300 border-8 border-black rounded-lg text-center">
             {listedFriends}
           </div>
         </div>
