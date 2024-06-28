@@ -23,8 +23,8 @@ function SingleView() {
   }, [selectComment]);
 
   const listedComments = commentsList.map((comment) => (
-    <div key={comment._id} onClick={() => setSelectComment(comment)}>
-      <CommentCard data={comment} />
+    <div key={comment._id} className="cursor-pointer">
+      <CommentCard data={comment} onClick={() => setSelectComment(comment)} />
     </div>
   ));
 
