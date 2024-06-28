@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import useCommentsStore from "../../store/useComments";
 import CommentCard from "../CommentCard";
@@ -7,18 +6,13 @@ import CommentCard from "../CommentCard";
 function Dashboard() {
   const { userComments } = useCommentsStore();
   const [isMyComment, setIsMyComment] = useState(true);
-  const navigate = useNavigate();
 
   const commentsList = isMyComment
     ? userComments.createdComments
     : userComments.receivedComments;
 
-  function navigateToCommentPage(commentId) {
-    navigate(`/comments/${commentId}`);
-  }
-
   const listedComments = commentsList.map((comment) => (
-    <div key={comment._id} onClick={() => navigateToCommentPage(comment._id)}>
+    <div key={comment._id}>
       <CommentCard data={comment} />
     </div>
   ));
@@ -42,7 +36,7 @@ function Dashboard() {
           Received Comments
         </button>
       </nav>
-      <div className="grid flex-wrap justify-between w-full grid-cols-6 gap-4 px-20 overflow-auto text-center bg-gray-300 border-8 border-black rounded-lg h-5/6">
+      <div className="grid grid-cols-6 gap-4 px-20 justify-between w-full text-center bg-gray-300 border-8 border-black rounded-lg h-5/6">
         {listedComments}
       </div>
     </section>
