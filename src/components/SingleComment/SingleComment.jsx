@@ -20,6 +20,7 @@ export function SingleComment() {
   const [isModalOpen, setModalOpen] = useState(true);
   const [isReCommentOpen, setReComment] = useState(false);
   const [scrollCoordinate, setScrollCoordinate] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (feedCommentData) {
@@ -47,7 +48,11 @@ export function SingleComment() {
           commentId,
           userData._id,
         );
+
         setFeedCommentData(commentData);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       } catch (error) {
         console.error("Error fetching comment:", error.message);
       }
@@ -135,8 +140,12 @@ export function SingleComment() {
     }
   };
 
-  if (!feedCommentData) {
-    return <div>Loading....</div>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="w-16 h-16 border-4 border-blue-500 border-solid rounded-full border-t-transparent animate-spin"></div>
+      </div>
+    );
   }
 
   const listedReComments =
